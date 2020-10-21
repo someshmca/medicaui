@@ -1,0 +1,31 @@
+
+html, body, div, p, input{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+h1, h2, h3, h4, h5, h6{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.card-header{
+    background: #e3f0f5 !important;
+    color: #00718f;
+    font-weight: 600;
+}
+
+.form-control{
+    border: 1px solid #a0a0a0;
+}
+a:hover{
+    text-decoration: none;
+}
+
+.card{
+    margin: 15px;
+}
+.custom-card .form-group label{
+    /* min-width: 170px; */
+    max-width: 200px;
+}
+.custom-card .form-control{
+    height: 30px;
+    max-width: 200px;
+}
