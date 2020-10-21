@@ -1,0 +1,156 @@
+<form [formGroup]="claimSearchForm" (ngSubmit)="onSubmit(claimSearchForm)">
+    <div class="card custom-card">
+        <div class="card-header bg-info">
+            Member Details
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-md-5">
+                            Claim ID
+                        </label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" formControlName="ClaimId"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-md-5">
+                            Member ID</label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" formControlName="MemberId"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-md-5">Member Last Name</label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" formControlName="Fname"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-md-5">Member First Name</label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" formControlName="Lname"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-md-5">Member Birth Date</label>
+                        <div class="col-md-7">
+                            <input type="date" class="form-control" formControlName="DateOfBirth"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card custom-card">
+        <div class="card-header">
+            Supplier
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-md-5">Supplier Name</label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control"  formControlName="SupplierName"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group row">
+                        <label class="col-md-5">Supplier ID</label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" formControlName="SupplierId"/>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            Service Dates
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-md-3">From</label>
+                        <div class="col-md-7">
+                            <input type="date" class="form-control" formControlName="ServiceDateFrom"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-md-2">To</label>
+                        <div class="col-md-7">
+                            <input type="date" class="form-control" formControlName="ServiceDateTo"/>
+                        </div>
+                    </div>                 
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card custom-card">
+        <div class="card-header">
+            Rendering Practitioner
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-md-5">Practitioner ID</label>
+                        <div class="col-md-7">
+                        <input type="text" class="form-control" formControlName="PractitionerId"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-md-5">Last Name</label>
+                        <div class="col-md-7">
+                        <input type="text" class="form-control" formControlName="LastName"/>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group row">
+                        <label class="col-md-5">First Name</label>
+                        <div class="col-md-7">
+                        <input type="text" class="form-control"  formControlName="FirstName"/>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card border-0">
+        <div class="card-body">
+            <button class="btn btn-primary">Search</button>            
+        </div>
+    </div>    
+    </form>
+    
+    

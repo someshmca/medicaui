@@ -1,0 +1,41 @@
+
+  <div class="container-fluid px-0">
+	<div class="login-container">
+	<div class="login-form-area">
+        <div [hidden]="submitted">
+            <div class="login-user-avatar-area">
+                <div class="avatar-icon-area">
+                <img src="../../../assets/images/user-avatar.jpg" border="0"/>
+                </div>
+                <h3>User Login</h3>
+            </div>
+            <form autocomplete="off" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+                <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="EmailId" required [(ngModel)]="loginModel.EmailId" #EmailId="ngModel">
+                </div>
+                <div class="form-group">
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="Password" required [(ngModel)]="loginModel.Password" #Password="ngModel">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">Submit</button>
+                <!-- <button class="btn btn-success" type="button" (click)="getLoginDetails()" [disabled]="!loginForm.form.valid">
+                    Login
+                    </button> -->
+                </div>
+                <div class="forgot-password-area">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+        <!-- <p>
+           Login Data in paragraph Tag :  {{loginData}}
+        </p>
+        <p>
+           Entered Email:  {{userName}}
+        </p>
+        <p>
+            Entered Password : {{password}}
+        </p> -->
+	</div>
+  </div>
+</div>

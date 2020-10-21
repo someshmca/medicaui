@@ -1,0 +1,46 @@
+
+<div class="container">
+	<div class="row">
+    <div class="col-12">
+      <!-- <h4 class="float-right text-secondary">
+        Welcome <strong>{{user}}</strong>. You loggedin as <strong>{{role}}</strong>
+      </h4> -->
+      <br/>
+      <div class="card">
+        <div class="card-header">
+            About your Role 
+        </div>
+        <div class="card-body">
+            <p>
+              Your role is to manage users and their activities on regular intervals. 
+            </p>
+            Select a role 
+            <select class="form-control" style="max-width: 260px;" (change)="getRoleInfo($event.target.value)">
+             <option value="Please Select the Role" selected="selected">
+                Please Select the Role
+             </option>
+              <option value="Admin">Admin</option>
+              <option value="User">User</option>
+            </select>
+            <br/>
+            <div class="table-responsive" [hidden]="!isRoleNameValid">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Role</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{roleName}}</td>
+                            <td>{{roleDescription}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "./assets/css/dashboard.css";
+@import "./assets//css/styles.css";
+
+html, body { height: 100%;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+p, div, table, tr, th, td, span{
+    font-size: 14px;
+}
+h1{
+    font-size: 18px;
+}
+h2{font-size: 17px;}
+h3{
+    font-size: 16px;
+}
+h4{
+    font-size: 15px;
+}
+h5, h6{
+    font-size: 14px;
+}

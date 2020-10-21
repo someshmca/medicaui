@@ -1,0 +1,12 @@
+
+.claim-table-content{
+    padding: 15px;
+}
+
+.claim-table-area{
+    margin: 15px auto;
+}
+.claim-table-area table{
+    border: 1px solid #c0c0c0;
+    width: 1500px;    
+}
