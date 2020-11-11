@@ -1,11 +1,11 @@
 export interface IClaimReportsModel{
-        billId: number;
-        claimId: number;
+        billId: string;
+        claimId: string;
         providerName: string;
         memberName: string;
         converted: boolean;
         billed: number;
-        memberId: number;
+        memberId: string;
         hccamount: number;
         allowed: number;
         capitated: boolean;

@@ -1,24 +1,22 @@
 
     <div class="card custom-card">
-        <div class="card-header bg-info">
+        <div class="card-header">
            Programs
         </div>
         <div class="card-body">
-            <form>
                 <div class="form-group row">
                     <label class="col-md-5">
-                        Progra ID
+                        Program ID
                     </label>
                     <div class="col-md-7">
-                        <select class="form-control" name="protractId">
+                        <select class="form-control" name="programID" (change)="getProgramDetails($event.target.value)">
                             <option selected="selected">Please Select</option>
-                            <option>PRO8544</option>
-                            <option>PRO1245</option>
-                            <option>PRO1246</option>
+                            <option *ngFor="let programID of programIDs" [value]="programID">
+                                {{programID}}
+                            </option>
                         </select>
                     </div>
                 </div>     
-            </form>        
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -28,18 +26,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>PRO8544</td>
-                            <td>Programs of the user information goes here</td>
-                        </tr>
-                        <tr>
-                            <td>PRO1246</td>
-                            <td>Programs of the user information goes here</td>
-                        </tr>
-                        <tr>
-                            <td>PRO1245</td>
-                            <td>Programs of the user information goes here</td>
-                        </tr>
+                        <tr *ngIf="isProgramDetailCalled">
+                            <td>{{ programDetail.programId }}</td>
+                            <td>{{ programDetail.description }}</td>
+                        </tr>                    
                     </tbody>
                 </table>
             </div>

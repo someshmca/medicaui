@@ -2,12 +2,16 @@
   <div class="container-fluid">
       
     <div class="row">
-      <div class="col-md-3 p-0">
+      <div [ngClass]="{ 'col-md-3 p-0':isLoggedIn, 'd-none':!isLoggedIn }">
         <app-main-side-nav></app-main-side-nav>
       </div>
-    <main role="main" class="col-md-9 p-0">
+    <main role="main" [ngClass]="{ 'col-md-9 p-0':isLoggedIn, 'col-md-12 p-0':!isLoggedIn }">
       <header class="content-header">
-        <h3>Medica Stop Loss - Insurannce </h3>
+        <h3>Medica Stop Loss - Insurance </h3>
+        <div [hidden]="!isLoggedIn" class="welcome-user">
+          Welcome {{user}}. You logged in as {{role}}
+          <p><a (click)="logout()">Logout</a></p>
+        </div>
       </header>
       <router-outlet></router-outlet>
      </main>

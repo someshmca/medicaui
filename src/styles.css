@@ -1,10 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.css";
+/* @import "~bootstrap/dist/css/bootstrap.css";
 @import "./assets/css/dashboard.css";
-@import "./assets//css/styles.css";
-
+@import "./assets//css/styles.css"; */
+@import "./assets//css/styles.css"; 
 html, body { height: 100%;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+     margin: 0; 
+     /*font-family: Roboto, "Helvetica Neue", sans-serif; */
+    }
 
 p, div, table, tr, th, td, span{
     font-size: 14px;
@@ -21,4 +24,7 @@ h4{
 }
 h5, h6{
     font-size: 14px;
+}
+.d-none{
+    display: none;
 }

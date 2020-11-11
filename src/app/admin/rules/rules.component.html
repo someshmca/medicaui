@@ -1,0 +1,77 @@
+
+    <div class="card custom-card">
+        <div class="card-header">
+           Rules
+        </div>
+        <div class="card-body">
+                <div class="form-group row">
+                    <label class="col-md-3">
+                        Select a Rule ID
+                    </label>
+                    <div class="col-md-9">
+                        <select class="form-control" name="rule" (change)="getRuleDetails($event.target.value)">
+                            <option selected="selected">Select Rule ID</option>
+                            <!-- <option value="1001">1001</option>
+                            <option value="1002">1002</option>
+                            <option value="1003">1003</option>
+                            <option value="1004">1004</option> -->                            
+                            <option *ngFor="let ruleID of ruleIDs" [value]="ruleID">
+                                {{ruleID}}</option>
+                        </select>
+                    </div>
+                </div>     
+             <!--
+            <div class="associated-roles">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="radio1" name="associatedrole">
+                    <label class="custom-control-label" for="radio1">Admin</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="radio2" name="associatedrole">
+                    <label class="custom-control-label" for="radio2">User</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="radio3" name="associatedrole">
+                    <label class="custom-control-label" for="radio3">Supplier</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="radio4" name="associatedrole">
+                    <label class="custom-control-label" for="radio4">Practitioner</label>
+                  </div>
+            </div>
+        -->
+            <div class="rules-table-area">
+            <div class="table-responsive rules-table">
+                <div class="rules-add-area">
+                    <span class="fa fa-plus-circle" routerLink="/add-rule"></span>
+                </div>
+                <table class="table table-bordered table-striped m-auto rules-table">
+                    <thead>
+                        <tr>
+                            <th>Rule ID</th>
+                            <th>Description</th>
+                            <th>Rule Group</th>
+                            <th>Value</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="isRuleIDCalled">
+                            <td>{{ruleID}}</td>
+                            <td>{{ruleDescription}}</td>
+                            <td>{{ruleGroup}}</td>
+                            <td>{{ruleValue}}</td>
+                            <td>
+                                <div class="action-items">
+                                    <span class="fa fa-edit"></span> 
+                                    <span class="fa fa-trash"></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </div>
+    

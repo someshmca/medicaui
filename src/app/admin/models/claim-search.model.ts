@@ -1,14 +1,14 @@
 export interface IClaimSearch{    
-    ClaimId:number;
-    MemberId: number
+    ClaimId:string;
+    MemberId: string;
     Fname:string;
     Lname:string;
     DateOfBirth:Date;
-    SupplierId:1;
+    SupplierId:string;
     SupplierName:string;
     ServiceDateFrom:Date;
     ServiceDateTo:Date;
-    PractitionerId:number;
+    PractitionerId:string;
     FirstName:string;
     LastName:string
 }

@@ -1,0 +1,40 @@
+<div class="add-rule-area">
+
+<form  [formGroup]="ruleAddForm" (ngSubmit)="addNewRule(ruleAddForm)" [hidden]="isRuleAdded">
+    <div class="form-group">
+        <label for="ruleid">Rule ID</label>
+        <input type="email" class="form-control" placeholder="Enter RuleID" id="ruleid" formControlName="ruleId">
+      </div>
+      <div class="form-group">
+        <label for="descrip">Description</label>
+        <input type="text" class="form-control" placeholder="Enter Description" id="descrip" formControlName="description">
+      </div>
+      <div class="form-group">
+        <label for="rulegroup">Rule Group</label>
+        <select class="form-control" id="rulegroup" formControlName="ruleGroupValue">
+
+          <option value="Benefits">Benefits</option>
+          <option value="Contracts">Contracts</option>
+          <option value="Practitioners">Practitioners</option>
+          <option value="Suppliers">Suppliers</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="ruleval">Value</label>
+        <input type="text
+        " class="form-control" placeholder="Enter Value" id="ruleval" formControlName="ruleValue">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-success">Add</button>
+      </div>
+      </form>
+      <div class="card" [hidden]="!isRuleAdded">
+        <div class="card-header">
+          <h4 class="text-success"></h4>
+        </div>
+        <div class="card-body">
+          <h4>{{ruleAddResponse.message}}</h4>
+        </div>
+      </div>
+
+  </div>

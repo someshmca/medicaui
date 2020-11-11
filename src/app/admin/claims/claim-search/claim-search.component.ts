@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {IClaimSearch} from '../../models/claim-search.model';
+import {IClaimReportsModel} from '../../models/claim-reports.model';
+import {ClaimReportService} from '../../services/claim-report.service';
+import {ClaimService} from '../../services/claim.service';
+import {Paths} from '../../admin-paths';
+import { Observable } from 'rxjs';
 
-import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-claim-search',
   templateUrl: './claim-search.component.html',
@@ -9,29 +16,85 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class ClaimSearchComponent implements OnInit {
   
   claimSearchForm: FormGroup;
-
-  constructor(private fb: FormBuilder) {}
+  //responseClaimReport: Array<IClaimReportsModel>[];
+  responseClaimReportData: any=[];
+  claimRequest: IClaimSearch;
+  isClaimReportsHidden: boolean= true;
+  constructor(private fb: FormBuilder, 
+    private _claimReportService: ClaimReportService, 
+    private _claimService: ClaimService,
+    private _route:Router ) {}
 
   ngOnInit() {
     this.claimSearchForm = this.fb.group({
-      ClaimId:1,
-      MemberId: 1,
-      Fname:'Kiran',
-      Lname:'Kumar',
-      DateOfBirth:'1990-10-17',
-      SupplierId:1,
-      SupplierName:'Praveen Sandur',
-      ServiceDateFrom:'2020-10-18',
-      ServiceDateTo:'2020-10-18',
-      PractitionerId:2,
-      FirstName:'Fayaz',
-      LastName:'Mohammad'
+      ClaimId: ['', Validators.required],
+      MemberId:  ['', Validators.required],
+      Fname:'',
+      Lname:'',
+      DateOfBirth:new Date('2020-10-29T13:50:37.249Z'),
+      SupplierId: ['', Validators.required],
+      SupplierName:'',
+      ServiceDateFrom:new Date('2020-10-29T13:50:37.249Z'),
+      ServiceDateTo:new Date('2020-10-29T13:50:37.249Z'),
+      PractitionerId: ['', Validators.required],
+      FirstName:'',
+      LastName:''
     });
   }
+
+  // formData: any = new FormData();
+  // formData.append("name", this.claimSearchForm.get('ClaimId').value);
+  // formData.append("avatar", this.form.get('avatar').value);
+
+  // this.http.post('http://localhost:4000/api/create-user', formData).subscribe(
+  //   (response) => console.log(response),
+  //   (error) => console.log(error)
+  // )
   onSubmit(form: FormGroup) {
     console.log('Valid?', form.valid); // true or false
-    console.log('Name', form.value.Fname);
-    console.log('Email', form.value.Lname);
-    console.log('Message', form.value.SupplierName);
+
+    console.log('Claim Id : ', typeof(this.claimSearchForm.get('ClaimId').value));
+    console.log('Member Id : ', this.claimSearchForm.get('MemberId').value);
+    console.log('Supplier Name : ', form.value.SupplierName);
+
+
+    this.claimRequest = {
+      ClaimId: this.claimSearchForm.get('ClaimId').value ,
+      MemberId: this.claimSearchForm.get('MemberId').value,
+      Fname:this.claimSearchForm.get('Fname').value,
+      Lname:this.claimSearchForm.get('Lname').value,
+      DateOfBirth:this.claimSearchForm.get('DateOfBirth').value,
+      SupplierId:this.claimSearchForm.get('SupplierId').value,
+      SupplierName:this.claimSearchForm.get('SupplierName').value,
+      ServiceDateFrom:this.claimSearchForm.get('ServiceDateFrom').value,
+      ServiceDateTo:this.claimSearchForm.get('ServiceDateTo').value,
+      PractitionerId:this.claimSearchForm.get('PractitionerId').value,
+      FirstName:this.claimSearchForm.get('FirstName').value,
+      LastName:this.claimSearchForm.get('LastName').value
+    };
+    const headers = { 'content-type': 'application/json'};
+    // this.claimRequest= form.value;
+    console.log("claim request "+this.claimRequest);
+   // debugger;
+    this._claimReportService.getClaimReport((this.claimRequest)).subscribe(
+      (data) => {
+        console.log("data : "+data);      
+        this.responseClaimReportData = data;
+       // debugger;        
+        console.log(" responseClaimReportData : "+this.responseClaimReportData);
+        //debugger;
+        console.log(" report claim ID : "+this.responseClaimReportData.claimId);
+        this.isClaimReportsHidden = false;
+        console.log("Calim Response data : "+data);
+        //debugger;
+      } 
+    );
+   // this._claimReportService.getClaimReport("")
+  }
+  
+  setClaimId(id: string){
+    this._claimService.setClaimId(id);
+    console.log("Id : "+id);
+    this._route.navigate(['/claim']);
   }
 }

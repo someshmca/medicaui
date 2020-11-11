@@ -24,3 +24,28 @@
 .tab-pane{
     padding-top: 15px;
 }
+
+.claim-actions-header{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.claim-actions-header h5{
+    margin-right: 15px;
+}
+.claim-actions-header a{
+    margin-right: 15px;
+}
+.claim-form .form-group .form-control{
+    width: initial;
+    min-width: 60px;
+    max-width: 140px;
+}
+
+.claim-form .form-group label{
+    /* min-width: 170px; 
+    max-width: 200px;*/
+    min-width: initial;
+    max-width: initial;
+    margin: 0 15px 0 0;
+}

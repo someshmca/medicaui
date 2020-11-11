@@ -8,15 +8,23 @@ import { BenefitsComponent } from './benefits/benefits.component';
 import { ProgramsComponent } from './programs/programs.component';
 import { ContractsComponent } from './contracts/contracts.component';
 import { RoleComponent } from './role/role.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ClaimReportService } from './services/claim-report.service';
+import { BenefitService} from './services/benefit.service';
+import { RulesComponent } from './rules/rules.component';
+import { AddRuleComponent } from './rules/add-rule/add-rule.component';
 
-import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
-  declarations: [ClaimSearchComponent, ClaimResultComponent, ClaimComponent, BenefitsComponent, ProgramsComponent, ContractsComponent, RoleComponent],
+  declarations: [ClaimSearchComponent, ClaimResultComponent, ClaimComponent, BenefitsComponent, ProgramsComponent, ContractsComponent, RoleComponent, RulesComponent, AddRuleComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    ClaimReportService,
+    BenefitService
   ]
 })
 export class AdminModule { }

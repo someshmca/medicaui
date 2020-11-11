@@ -1,0 +1,26 @@
+.claim-table-content{
+    padding: 15px;
+}
+.claim-table-content h2{
+    font-size: 18px;
+    padding: 8px 0;
+    font-weight: bold;
+}
+.claim-search-btn-area{
+    padding: 0;
+}
+.claim-search-btn-area .btn{
+    margin-right: 15px;
+}
+
+.claim-report-table tr td:first-child{
+    color: #007bff;
+    cursor: pointer;
+}
+.claim-table-area{
+    width: 100%;
+    overflow-x: auto;
+}
+.claim-report-table{
+    width: 1200px;
+}

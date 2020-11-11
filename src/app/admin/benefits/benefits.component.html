@@ -1,24 +1,22 @@
 
     <div class="card custom-card">
-        <div class="card-header bg-info">
+        <div class="card-header">
            Benefits
         </div>
         <div class="card-body">
-            <form>
                 <div class="form-group row">
                     <label class="col-md-5">
                         Benefit ID
                     </label>
                     <div class="col-md-7">
-                        <select class="form-control" name="benefitId">
+                        <select class="form-control" name="benefitId" (change)="getBenefitDetails($event.target.value)">
                             <option selected="selected">Please Select</option>
-                            <option>BEN8544</option>
-                            <option>BEN1245</option>
-                            <option>BEN1246</option>
+                            <option *ngFor="let benefitID of benefitIDs" [value]="benefitID">
+                                {{benefitID}}
+                            </option>
                         </select>
                     </div>
                 </div>     
-            </form>        
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -28,18 +26,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>BEN8544</td>
-                            <td>Benefits of the user information goes here</td>
+                        <tr *ngIf="isBenefitDetailCalled">
+                            <td>{{ benefitDetail.benefitId }}</td>
+                            <td>{{ benefitDetail.description }}</td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td>BEN1246</td>
                             <td>Benefits of the user information goes here</td>
                         </tr>
                         <tr>
                             <td>BEN1245</td>
                             <td>Benefits of the user information goes here</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>

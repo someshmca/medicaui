@@ -1,24 +1,22 @@
 
     <div class="card custom-card">
-        <div class="card-header bg-info">
+        <div class="card-header">
            Contracts
         </div>
         <div class="card-body">
-            <form>
                 <div class="form-group row">
                     <label class="col-md-5">
                         Contract ID
                     </label>
                     <div class="col-md-7">
-                        <select class="form-control" name="contractId">
+                        <select class="form-control" name="contractId" (change)="getContractDetails($event.target.value)">
                             <option selected="selected">Please Select</option>
-                            <option>CON8544</option>
-                            <option>CON1245</option>
-                            <option>CON1246</option>
+                            <option *ngFor="let contractID of contractIDs" [value]="contractID">
+                                {{contractID}}
+                            </option>
                         </select>
                     </div>
                 </div>     
-            </form>        
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -28,18 +26,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>CON8544</td>
-                            <td>Contracts of the user information goes here</td>
-                        </tr>
-                        <tr>
-                            <td>CON1246</td>
-                            <td>Contracts of the user information goes here</td>
-                        </tr>
-                        <tr>
-                            <td>CON1245</td>
-                            <td>Contracts of the user information goes here</td>
-                        </tr>
+                        <tr *ngIf="isContractDetailCalled">
+                            <td>{{ contractDetail.contractsId }}</td>
+                            <td>{{ contractDetail.description }}</td>
+                        </tr>  
                     </tbody>
                 </table>
             </div>

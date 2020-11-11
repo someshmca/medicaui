@@ -1,112 +1,131 @@
 
 <p class="claim-id-firstline">
-    <strong>Claim ID: </strong>1000002814356
+    <strong>Claim ID: </strong> 
+    {{claimData.claimId}}
 </p>
 <div class="card">
-    <div class="card-header">Actions 
+    <div class="card-header claim-actions-header">
+        <h5>Actions </h5>
+        <a class="btn btn-primary" (click)="calculateClaimAmount()">Calculate</a>
         <a href="#" style="color: #555; margin-left: 8px;">
             <span class="fa fa-refresh"></span> Refresh
         </a>
     </div>
-    <div class="card-body">
-        <form>
+    <div class="card-body claim-form">
         <div class="row">
-            <div class="col-md-3 col-sm-6 col-12">
+            <div class="col-md-4 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Claim ID</label>
-                    <input type="text" name="claimid" class="form-control" value="1000002814356"/>
+                    <input type="text" name="claimid" class="form-control" [value]="claimData.claimId" readonly/>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-12">
+            <div class="col-md-4 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Last Changed on</label>
-                    <input type="text" name="lastchanged" class="form-control" value="7/28/2020 7:20 AM"/>
+                    <input type="text" name="lastchanged" class="form-control" [value]="claimData.lastChangedOn" readonly/>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-12">
+            <div class="col-md-4 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Status</label>
-                    <input type="text" name="claimstatus" class="form-control" value="Denied"/>
+                    <input type="text" name="claimstatus" class="form-control" [value]="claimData.status" readonly/>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-12">
+            <div class="col-md-4 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Adjudicated on</label>
-                    <input type="text" name="adjudicatedon" class="form-control" value="7/28/2020 7:20 AM"/>
+                    <input type="text" name="adjudicatedon" class="form-control" [value]="claimData.adjudicatedOn" readonly/>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-6 col-12">
+            <div class="col-md-4 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Claim Type</label>
-                    <input type="text" name="claimtype" class="form-control" value="Institutional"/>
+                    <input type="text" name="claimtype" class="form-control" [value]="claimData.claimType" readonly/>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-12 pos-r">
+            <div class="col-md-4 col-sm-6 col-12 pos-r">
                 <div class="form-check-inline claim-form-checkbox">
                     <label class="form-check-label">
                         Manually Priced 
-                      <input type="checkbox" class="form-check-input" name="ismanuallypriced" value="" > 
+                      <input type="checkbox" class="form-check-input" name="ismanuallypriced" [checked]="claimData.manuallyPriced" readonly > 
                     </label>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-12 pos-r">
+            <div class="col-md-4 col-sm-6 col-12 pos-r">
                 <div class="form-check-inline claim-form-checkbox">
                     <label class="form-check-label">
                         Send to Review
-                      <input type="checkbox" class="form-check-input" name="sendtoreview" value=""> 
+                      <input type="checkbox" class="form-check-input" name="sendtoreview" [value]="claimData.sentToReview" readonly> 
                     </label>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-12">
+            <div class="col-md-4 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Benefit Plan Type</label>
-                    <input type="text" name="benefitplantype" class="form-control" value=""/>
+                    <input type="text" name="benefitplantype" class="form-control" [value]="claimData.benefitPlanType" readonly/>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-6 col-12 pos-r">
+            <div class="col-md-4 col-sm-6 col-12 pos-r">
                 <div class="form-check-inline claim-form-checkbox">
                     <label class="form-check-label">
                         Capitated Service
-                      <input type="checkbox" class="form-check-input" name="capitatedservice" value=""> 
+                      <input type="checkbox" class="form-check-input" name="capitatedservice" [checked]="claimData.capitatedService" readonly> 
                     </label>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-12 pos-r">
+            <div class="col-md-4 col-sm-6 col-12 pos-r">
                 <div class="form-check-inline claim-form-checkbox">
                     <label class="form-check-label">
                         Removed Claim
-                      <input type="checkbox" class="form-check-input" name="removedclaim" value=""> 
+                      <input type="checkbox" class="form-check-input" name="removedclaim" [checked]="claimData.removedClaim" readonly> 
                     </label>
                 </div>
             </div>   
-            <div class="col-md-3 col-sm-6 col-12 pos-r">
+            <div class="col-md-4 col-sm-6 col-12 pos-r">
                 <div class="form-check-inline claim-form-checkbox">
                     <label class="form-check-label">
                         Voided Claim
-                      <input type="checkbox" class="form-check-input" name="voidedclaim" value=""> 
+                      <input type="checkbox" class="form-check-input" name="voidedclaim" [checked]="claimData.voidedClaim" readonly> 
                     </label>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-12">
+            <div class="col-md-4 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Calculated Benefit Plan</label>
-                    <input type="text" name="calculatedbenefitplan" class="form-control" value="Medical"/>
+                    <input type="text" name="calculatedbenefitplan" class="form-control" [value]="claimData.calculatedBenefitPlan"/>
                 </div>
             </div>        
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-6 col-12">
+            <div class="col-md-4 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Claim Source</label>
-                    <input type="text" name="claimsource" class="form-control" value="Unknown"/>
+                    <input type="text" name="claimsource" class="form-control" [value]="claimData.claimSource" readonly/>
                 </div>
             </div>  
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Claim Amount</label>
+                    <input type="text" name="claimAmount" class="form-control"  [value]="claimData.claimAmount" readonly/>
+                </div>
+            </div>  
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Claim Start Date</label>
+                    <input type="text" name="startDate" [value]="claimData.startDate" class="form-control" readonly/>
+                </div>
+            </div>  
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="form-group">
+                    <label>Claim End Date</label>
+                    <input type="text" name="endDate" [value]="claimData.endDate" class="form-control" readonly/>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="form-group" [hidden]="!isCalculateClicked">
+                    <label>Stop Loss Amount</label>
+                    <input type="text" name="stopLossAmount" [value]="stopLossAmount" class="form-control" readonly/>
+                </div>
+            </div>    
         </div>
-    </form>
     </div>
 </div>
 <br/>
@@ -127,30 +146,29 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div id="home" class="container tab-pane active"><br>
-        <form>
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="form-group">
                         <label>Claim ID</label>
-                        <input type="text" name="claimid" class="form-control" value="1000002814356"/>
+                        <input type="text" name="claimid" class="form-control" [value]="claimData.claimId" readonly/>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="form-group">
                         <label>Last Changed on</label>
-                        <input type="text" name="lastchanged" class="form-control" value="7/28/2020 7:20 AM"/>
+                        <input type="text" name="lastchanged" class="form-control" [value]="claimData.lastChangedOn" readonly/>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="form-group">
                         <label>Status</label>
-                        <input type="text" name="claimstatus" class="form-control" value="Denied"/>
+                        <input type="text" name="claimstatus" class="form-control" [value]="claimData.status" readonly/>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="form-group">
                         <label>Adjudicated on</label>
-                        <input type="text" name="adjudicatedon" class="form-control" value="7/28/2020 7:20 AM"/>
+                        <input type="text" name="adjudicatedon" class="form-control" [value]="claimData.adjudicatedOn" readonly>
                     </div>
                 </div>
             </div>
@@ -158,14 +176,14 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="form-group">
                         <label>Claim Type</label>
-                        <input type="text" name="claimtype" class="form-control" value="Institutional"/>
+                        <input type="text" name="claimtype" class="form-control" [value]="claimData.claimType" readonly/>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12 pos-r">
                     <div class="form-check-inline claim-form-checkbox">
                         <label class="form-check-label">
                             Manually Priced 
-                          <input type="checkbox" class="form-check-input" name="ismanuallypriced" value="" > 
+                          <input type="checkbox" class="form-check-input" name="ismanuallypriced" [checked]="claimData.manuallyPriced" readonly > 
                         </label>
                     </div>
                 </div>
@@ -173,14 +191,14 @@
                     <div class="form-check-inline claim-form-checkbox">
                         <label class="form-check-label">
                             Send to Review
-                          <input type="checkbox" class="form-check-input" name="sendtoreview" value=""> 
+                          <input type="checkbox" class="form-check-input" name="sendtoreview" [checked]="claimData.sentToReview" readonly> 
                         </label>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="form-group">
                         <label>Benefit Plan Type</label>
-                        <input type="text" name="benefitplantype" class="form-control" value=""/>
+                        <input type="text" name="benefitplantype" class="form-control" [value]="claimData.benefitPlanType" readonly/>
                     </div>
                 </div>
             </div>
@@ -189,7 +207,7 @@
                     <div class="form-check-inline claim-form-checkbox">
                         <label class="form-check-label">
                             Capitated Service
-                          <input type="checkbox" class="form-check-input" name="capitatedservice" value=""> 
+                          <input type="checkbox" class="form-check-input" name="capitatedservice" [checked]="claimData.capitatedService" readonly> 
                         </label>
                     </div>
                 </div>
@@ -197,7 +215,7 @@
                     <div class="form-check-inline claim-form-checkbox">
                         <label class="form-check-label">
                             Removed Claim
-                          <input type="checkbox" class="form-check-input" name="removedclaim" value=""> 
+                          <input type="checkbox" class="form-check-input" name="removedclaim" [checked]="claimData.removedClaim" readonly> 
                         </label>
                     </div>
                 </div>   
@@ -205,14 +223,14 @@
                     <div class="form-check-inline claim-form-checkbox">
                         <label class="form-check-label">
                             Voided Claim
-                          <input type="checkbox" class="form-check-input" name="voidedclaim" value=""> 
+                          <input type="checkbox" class="form-check-input" name="voidedclaim" [checked]="claimData.voidedClaim" readonly> 
                         </label>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="form-group">
                         <label>Calculated Benefit Plan</label>
-                        <input type="text" name="calculatedbenefitplan" class="form-control" value="Medical"/>
+                        <input type="text" name="calculatedbenefitplan" class="form-control" [value]="claimData.calculatedBenefitPlan" readonly/>
                     </div>
                 </div>        
             </div>
@@ -220,11 +238,10 @@
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="form-group">
                         <label>Claim Source</label>
-                        <input type="text" name="claimsource" class="form-control" value="Unknown"/>
+                        <input type="text" name="claimsource" class="form-control" [value]="claimData.claimSource" readonly/>
                     </div>
                 </div>  
             </div>
-        </form>
     </div>
     <div id="menu1" class="container tab-pane fade"><br>
       <h3>Menu 1</h3>

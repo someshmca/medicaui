@@ -1,10 +1,20 @@
 
-html, body, div, p, input{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+html, body, div, p, input, span, label, .form-control{
+   /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;*/
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 12px;
 }
 h1, h2, h3, h4, h5, h6{
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+h1{
+    font-size: 20px;
+}
+h2{ font-size: 18px;}
+h3{ font-size: 16px;}
+h4{ font-size: 15px;}
+h5{ font-size: 14px;}
+h6{ font-size: 13px;}
 .card-header{
     background: #e3f0f5 !important;
     color: #00718f;
@@ -21,11 +31,21 @@ a:hover{
 .card{
     margin: 15px;
 }
-.custom-card .form-group label{
-    /* min-width: 170px; */
+.custom-card .form-group label, .card .form-group label{
+     min-width: 170px; 
     max-width: 200px;
 }
-.custom-card .form-control{
+.custom-card .form-group, .card .form-group{
+    display: flex;
+    align-items: center;
+    min-height: 35px;
+}
+.custom-card .form-control, .card .form-control{
     height: 30px;
     max-width: 200px;
+}
+.card input[type='date'].form-control{
+    height: 30px;
+    max-width: initial;
+    width: 175px;
 }
