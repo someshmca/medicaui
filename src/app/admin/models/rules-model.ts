@@ -1,3 +1,4 @@
+
 export interface IRuleIDs{
     roleName: string
 }
@@ -28,3 +29,20 @@ export interface IRuleAddResponse{
      ruleID : string;
      message :  string;
 }
+
+export interface IRuleUpdate{
+    description: string,
+    value: string,
+    createdid: string,
+    createdBy: string,
+    updateid: string,
+    lastupdate: string,
+    ruleGroup: string,
+    ruleId: string
+}
+
+export interface IRuleUpdateResponse{
+    ruleID : string;
+    message :  string;
+}
+

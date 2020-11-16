@@ -20,30 +20,10 @@
                         </select>
                     </div>
                 </div>     
-             <!--
-            <div class="associated-roles">
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="radio1" name="associatedrole">
-                    <label class="custom-control-label" for="radio1">Admin</label>
-                  </div>
-                  <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="radio2" name="associatedrole">
-                    <label class="custom-control-label" for="radio2">User</label>
-                  </div>
-                  <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="radio3" name="associatedrole">
-                    <label class="custom-control-label" for="radio3">Supplier</label>
-                  </div>
-                  <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" class="custom-control-input" id="radio4" name="associatedrole">
-                    <label class="custom-control-label" for="radio4">Practitioner</label>
-                  </div>
-            </div>
-        -->
             <div class="rules-table-area">
             <div class="table-responsive rules-table">
                 <div class="rules-add-area">
-                    <span class="fa fa-plus-circle" routerLink="/add-rule"></span>
+                    <span class="fa fa-plus-circle" (click)="openAddModal(true)"></span>
                 </div>
                 <table class="table table-bordered table-striped m-auto rules-table">
                     <thead>
@@ -63,8 +43,9 @@
                             <td>{{ruleValue}}</td>
                             <td>
                                 <div class="action-items">
-                                    <span class="fa fa-edit"></span> 
-                                    <span class="fa fa-trash"></span>
+                                    <span class="fa fa-edit" 
+                                    (click)="openUpdateModal(true)"></span>
+                                    <span class="fa fa-trash" (click)="deleteRule(ruleID)"></span>
                                 </div>
                             </td>
                         </tr>
@@ -74,4 +55,158 @@
         </div>
         </div>
     </div>
+
+    <router-outlet></router-outlet>
+
+<!-- The Add Modal -->
+<div  id="addModal" class="modal fade" role="dialog" [ngStyle]="{'display': addModalIsOpen ? 'block' : 'none', 'opacity': 1}">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">
+                <span *ngIf="!isNewRuleAdded">Add Rule</span>
+            </h4>
+            <a class="fa fa-2x fa-times-circle" (click)="openAddModal(false)">
+            </a>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+
+    <div class="add-rule-area" *ngIf="!isNewRuleAdded">
+    <form  [formGroup]="addRuleForm" (ngSubmit)="addRule(addRuleForm)" [hidden]="isRuleAdded" autocomplete="off">
+
+            <!-- <div class="form-group">
+                <label for="ruleid">Rule ID</label>
+                <input type="email" class="form-control" placeholder="Enter RuleID" id="ruleid" formControlName="ruleId">
+              </div> -->
+              <div class="form-group">
+                <label for="descrip">Description</label>
+                <input type="text" class="form-control" placeholder="Enter Description" id="descrip" formControlName="description">
+              </div>
+              <div class="form-group">
+                <label for="rulegroup">Rule Group</label>
+                <select class="form-control" id="rulegroup" formControlName="ruleGroupValue">
+        
+                  <option value="Benefits">Benefits</option>
+                  <option value="Contracts">Contracts</option>
+                  <option value="Practitioners">Practitioners</option>
+                  <option value="Suppliers">Suppliers</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="ruleval">Value</label>
+                <input type="text
+                " class="form-control" placeholder="Enter Value" id="ruleval" formControlName="ruleValue">
+              </div>
+              <!-- <div class="card" [hidden]="!isRuleAdded">
+                <div class="card-header">.
+                  <h4 class="text-success"></h4>
+                </div>
+                <div class="card-body">
+                  <h4>{{ruleAddResponse.message}}</h4>
+                </div>
+              </div> -->
+        
+          <div class="modal-footer-btns">
+            <button type="button" class="btn btn-outline-success"  (click)="openAddModal(false)">Cancel</button>
+            <button type="submit" class="btn btn-success">Add</button>
+          </div>
+          </form>
+          </div>  <!-- end of add-rule-area -->
+          <div *ngIf="isNewRuleAdded" class="success-dialog-msg">
+               <div class="modal-body">
+               <h2>New Rule added successfully</h2>
+               </div>
+          </div>
+        </div>           
+        </div>
+      </div>
+    </div>
     
+<!-- The Update Modal -->
+<div  id="updateModal" class="modal fade" role="dialog" [ngStyle]="{'display': updateModalIsOpen ? 'block' : 'none', 'opacity': 1}">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title"></h4>
+            <a class="fa fa-2x fa-times-circle" (click)="openUpdateModal(false)">
+            </a>
+          </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div *ngIf="!isRuleUpdated">
+            <form [formGroup]="updateRuleForm" (ngSubmit)="updateRule()" autocomplete="off">
+                <div class="form-group">
+                    <label>Rule ID</label>
+                    <input type="text" class="form-control" formControlName="uruleid" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="descrip">Description:</label>
+                    <input type="text" class="form-control" formControlName="uruledescrip"  id="descrip">
+                  </div>
+                  <div class="form-group">
+                    <label for="ruleGroup">Rule Group:</label>
+                    <select class="form-control" id="descrip" formControlName="urulegroup">
+                        <!-- <option *ngFor="let rg of ruleGroupList" [value]="rg">
+                            {{rg}}
+                        </option> -->                                                                                               
+                        <option value="Benefits">Benefits</option>
+                        <option value="Contracts">Contracts</option>
+                        <option value="Practitioners">Practitioners</option>
+                        <option value="Suppliers">Suppliers</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="rulval">Value:</label>
+                    <input type="text" class="form-control" formControlName="urulevalue" id="rulval">
+                  </div>
+                  <!-- Modal footer -->
+                  <div class="modal-footer-btns">
+                    <button type="button" class="btn btn-outline-primary"  (click)="openUpdateModal(false)">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                  </div>
+                </form>
+            </div>
+            <div *ngIf="isRuleUpdated" class="success-dialog-msg">
+                 <div class="modal-body">
+                 <h2>Rule updated successfully</h2>
+                 </div>
+            </div>
+        </div>
+  
+  
+      </div>
+    </div>
+  </div>
+     
+<!-- The Update Modal -->
+<div  id="deleteModal" class="modal fade" role="dialog" [ngStyle]="{'display': deleteModalIsOpen ? 'block' : 'none', 'opacity': 1}">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title"></h4>
+            <a class="fa fa-2x fa-times-circle" (click)="openDeleteModal(false)">
+            </a>
+          </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div *ngIf="isRuleDeleted" class="success-dialog-msg">
+                 <div class="modal-body">
+                 <h2>Rule Deleted successfully</h2>
+                 </div>
+            </div>
+        </div>
+  
+  
+      </div>
+    </div>
+  </div>

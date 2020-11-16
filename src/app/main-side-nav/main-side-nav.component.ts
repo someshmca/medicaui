@@ -9,6 +9,7 @@ import { LoginService } from '../shared/services/login.service';
 export class MainSideNavComponent implements OnInit, AfterViewInit {
   isLoggedIn: boolean = false;
   linkToHome: string='';
+  roleName: string;
   constructor(private loginService: LoginService) { }
   
   ngOnInit(): void {
@@ -25,5 +26,9 @@ export class MainSideNavComponent implements OnInit, AfterViewInit {
       this.isLoggedIn = data;
     }
     );
+    this.loginService.loggedRole.subscribe((data) => {
+      console.log("main side nav after vinit logged status "+data);
+      this.roleName=data; 
+    })
   }
 }

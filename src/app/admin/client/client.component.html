@@ -1,0 +1,48 @@
+
+    <div class="card custom-card-1">
+        <div class="card-header">
+           Client
+        </div>
+        <div class="card-body">
+                <div class="form-group row">
+                    <label class="col-md-5">
+                        Client ID
+                    </label>
+                    <div class="col-md-7">
+                        <select class="form-control" name="contractId" (change)="getContractDetails($event.target.value)">
+                            <option selected="selected">Please Select</option>
+                            <option *ngFor="let contractID of contractIDs" [value]="contractID">
+                                {{contractID}}
+                            </option>
+                        </select>
+                    </div>
+                </div>     
+            <div class="table-responsive cust-table-wrap">
+                <div class="cust-add-area">
+                    <span class="fa fa-plus-circle"></span>
+                </div>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Client ID</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="isContractDetailCalled">
+                            <td>{{ contractDetail.contractsId }}</td>
+                            <td>{{ contractDetail.description }}</td>
+                            <td>
+                                <div class="action-items">
+                                    <span class="fa fa-edit"></span>
+                                    <span class="fa fa-trash"></span>
+                                </div>                                
+                            </td>
+                        </tr>  
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    

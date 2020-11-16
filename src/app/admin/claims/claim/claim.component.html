@@ -110,13 +110,13 @@
             <div class="col-md-4 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Claim Start Date</label>
-                    <input type="text" name="startDate" [value]="claimData.startDate" class="form-control" readonly/>
+                    <input type="text" name="startDate" [value]="claimData.startDate | date:'MM/dd/yyyy'" class="form-control" readonly/>
                 </div>
             </div>  
             <div class="col-md-4 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Claim End Date</label>
-                    <input type="text" name="endDate" [value]="claimData.endDate" class="form-control" readonly/>
+                    <input type="text" name="endDate" [value]="claimData.endDate | date:'MM/dd/yyyy'" class="form-control" readonly/>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12">

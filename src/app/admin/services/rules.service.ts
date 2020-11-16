@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import {IRuleIDs, IRuleDetails, IRuleAdd, IRuleAddResponse} from '../models/rules-model';
+import {IRuleIDs, IRuleDetails, IRuleAdd, IRuleAddResponse, IRuleUpdate, IRuleUpdateResponse} from '../models/rules-model';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
@@ -24,6 +24,20 @@ export class RulesService {
     const body = JSON.stringify(formData);
     const headerOptions = new HttpHeaders({ 'Content-Type': 'application/json' });
      return this.http.post<IRuleAdd>(Paths.ruleAddPath, body,{headers: headerOptions} ).pipe(catchError(this.handleError.bind(this)));
+   }
+   updateRule(formData: IRuleUpdate): Observable<IRuleUpdateResponse>{
+    const body = JSON.stringify(formData);
+    const headerOptions = new HttpHeaders({ 'Content-Type': 'application/json' });
+     return this.http.put<IRuleUpdate>(Paths.ruleUpdate, body,{headers: headerOptions} ).pipe(catchError(this.handleError.bind(this)));
+   }
+   deleteRule(ruleId: string){
+    //const body = JSON.stringify(formData);
+    //const headerOptions = new HttpHeaders({ 'Content-Type': 'application/json' });
+     return this.http.delete(Paths.ruleDeletePath+ruleId);
+     debugger;
+   }
+   getRuleGroup(){
+     return this.http.get<any>(Paths.ruleGroupList);
    }
   handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {

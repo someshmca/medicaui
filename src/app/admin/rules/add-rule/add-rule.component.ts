@@ -26,30 +26,6 @@ export class AddRuleComponent implements OnInit {
     });    
   }
 
-  addNewRule(form: FormGroup){
-    this.ruleAddRequest = {
-      ruleID: this.ruleAddForm.get('ruleId').value,
-      description: this.ruleAddForm.get('description').value,
-      ruleGroup: this.ruleAddForm.get('ruleGroupValue').value,
-      value: this.ruleAddForm.get('ruleValue').value,
-      createdid: '',
-      createdby: '',
-      updateid: '',
-      lastupdate: ''
-    };
-    const headers = { 'content-type': 'application/json'};
-    console.log("ruleAddRequest : "+ this.ruleAddRequest);
-    //debugger;
-    this.rulesService.addRule(this.ruleAddRequest).subscribe(
-      (data: IRuleAddResponse) => {
-        console.log("Add Rule data : "+data);
-        this.ruleAddResponse = data;
-        console.log("ruleAddresponse : "+this.ruleAddResponse);
-        this.isRuleAdded = true;
-       // debugger;
-      }
-    )
-  }
 
 }
 

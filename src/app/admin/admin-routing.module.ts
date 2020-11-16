@@ -9,6 +9,8 @@ import { ContractsComponent } from './contracts/contracts.component';
 import { RoleComponent } from './role/role.component';
 import { RulesComponent } from './rules/rules.component';
 import { AddRuleComponent } from './rules/add-rule/add-rule.component';
+import {UpdateRuleComponent} from './rules/update-rule/update-rule.component'
+import { ClientComponent } from './client/client.component';
 const routes: Routes = [
   {path: 'claim-search', component: ClaimSearchComponent},
   {path: 'claim-result', component: ClaimResultComponent},
@@ -16,9 +18,11 @@ const routes: Routes = [
   {path: 'benefits', component: BenefitsComponent},
   {path: 'programs', component: ProgramsComponent},
   {path: 'contracts', component: ContractsComponent},
+  {path: 'client', component: ClientComponent},
   {path: 'roles', component: RoleComponent},
   {path: 'rules', component: RulesComponent},
-  {path: 'add-rule', component: AddRuleComponent}
+  {path: 'add-rule', component: AddRuleComponent},
+  {path: 'update-rule', component: UpdateRuleComponent}
 ];
 
 @NgModule({

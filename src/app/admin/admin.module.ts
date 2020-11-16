@@ -13,10 +13,12 @@ import { ClaimReportService } from './services/claim-report.service';
 import { BenefitService} from './services/benefit.service';
 import { RulesComponent } from './rules/rules.component';
 import { AddRuleComponent } from './rules/add-rule/add-rule.component';
+import { UpdateRuleComponent } from './rules/update-rule/update-rule.component';
+import { ClientComponent } from './client/client.component';
 
 
 @NgModule({
-  declarations: [ClaimSearchComponent, ClaimResultComponent, ClaimComponent, BenefitsComponent, ProgramsComponent, ContractsComponent, RoleComponent, RulesComponent, AddRuleComponent],
+  declarations: [ClaimSearchComponent, ClaimResultComponent, ClaimComponent, BenefitsComponent, ProgramsComponent, ContractsComponent, RoleComponent, RulesComponent, AddRuleComponent, UpdateRuleComponent, ClientComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

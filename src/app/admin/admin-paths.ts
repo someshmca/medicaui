@@ -16,8 +16,10 @@ export const Paths = {
 
   rulesIDList: "https://medicastoploss.azurewebsites.net/api/Rules/GetAllRuleID",
   ruleIDDetail: "https://medicastoploss.azurewebsites.net/api/Rules/GetRulesDetails?ruleId=",
+  ruleGroupList: "https://medicastoploss.azurewebsites.net/api/Rules/GetRuleGroup", 
   ruleAddPath: "https://medicastoploss.azurewebsites.net/api/Rules/AddRules",
-  
+  ruleUpdate: "https://medicastoploss.azurewebsites.net/api/Rules/UpdateRules",
+  ruleDeletePath: "https://medicastoploss.azurewebsites.net/api/Rules/DeleteRules?ruleId=",
   claimCalculatePath: "https://medicastoploss.azurewebsites.net/api/Claim/CalculateClaimAmount/"
 
   

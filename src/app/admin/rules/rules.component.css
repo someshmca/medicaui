@@ -34,18 +34,6 @@
 .custom-card .form-group label{
     margin-bottom: 0;
 }
-.action-items{
-    text-align: center;
-}
-.action-items .fa{
-    margin: 0 8px;
-    color: #778899;
-    cursor: pointer;
-
-}
-.action-items .fa.fa-edit:hover{
-    color: #0148b3;
-}
-.action-items .fa.fa-trash:hover{
-    color: #b80202;
+.modal-footer-btns{
+    text-align: right;
 }
