@@ -122,6 +122,9 @@ export class RulesComponent implements OnInit {
   }
   openAddModal(open : boolean)  {   
     this.addModalIsOpen = open;
+    if(!open){
+      this.isNewRuleAdded = false;
+    }
   }
   openDeleteModal(open: boolean){
     this.deleteModalIsOpen = open;
@@ -135,6 +138,9 @@ export class RulesComponent implements OnInit {
       urulevalue:[this.ruleValue]
     });    
     this.updateModalIsOpen = open;
+    if(!open){
+      this.isRuleUpdated = false;
+    }
   }
   updateRule(){    
 
