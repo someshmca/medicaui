@@ -43,9 +43,7 @@
 }
 
 .claim-form .form-group label{
-    min-width: 170px; 
+    min-width: 140px;
     max-width: 200px;
-    /*min-width: initial;
-    max-width: initial;*/
-    margin: 0 15px 0 0;
+    margin: 0 1px 0 0;
 }
