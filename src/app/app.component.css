@@ -5,7 +5,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 0;
-    background: #00718f;
+    /* background: #00718f; */
+    background: #002C77;
     color: #ffffff;
 }
 .content-header h3{
@@ -31,4 +32,8 @@
     color: #ffffff;
     cursor: pointer;
     font-size: 12px;
+}
+.main-content-area{
+    padding: 15px;
+    margin: 0;
 }

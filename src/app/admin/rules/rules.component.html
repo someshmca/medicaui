@@ -1,212 +1,229 @@
 
     <div class="card custom-card">
-        <div class="card-header">
-           Rules
-        </div>
-        <div class="card-body">
-                <div class="form-group row">
-                    <label class="col-md-3">
-                        Select a Rule ID
-                    </label>
-                    <div class="col-md-9">
-                        <select class="form-control" name="rule" (change)="getRuleDetails($event.target.value)">
-                            <option selected="selected">Select Rule ID</option>
-                            <!-- <option value="1001">1001</option>
-                            <option value="1002">1002</option>
-                            <option value="1003">1003</option>
-                            <option value="1004">1004</option> -->                            
-                            <option *ngFor="let ruleID of ruleIDs" [value]="ruleID">
-                                {{ruleID}}</option>
-                        </select>
-                    </div>
-                </div>     
-            <div class="rules-table-area">
-            <div class="table-responsive rules-table">
-                <div class="rules-add-area">
-                    <span class="fa fa-plus-circle" (click)="openAddModal(true)"></span>
-                </div>
-                <table class="table table-bordered table-striped m-auto rules-table">
-                    <thead>
-                        <tr>
-                            <th>Rule ID</th>
-                            <th>Description</th>
-                            <th>Rule Group</th>
-                            <th>Value</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngIf="isRuleIDCalled">
-                            <td>{{ruleID}}</td>
-                            <td>{{ruleDescription}}</td>
-                            <td>{{ruleGroup}}</td>
-                            <td>{{ruleValue}}</td>
-                            <td>
-                                <div class="action-items">
-                                    <span class="fa fa-edit" 
-                                    (click)="openUpdateModal(true)"></span>
-                                    <span class="fa fa-trash" (click)="deleteRule(ruleID)"></span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        </div>
-    </div>
+      <div class="card-header">
+         Rules
+      </div>
+      <div class="card-body">
+              <div class="form-group row">
+                  <label class="col-md-3">
+                      Select a Rule ID
+                  </label>
+                  <div class="col-md-9">
+                      <select class="form-control" name="rule" (change)="getRuleDetails($event.target.value)">
+                          <option selected="selected" [value]="selectAll">Select All</option>
+                          <!-- <option value="1001">1001</option>
+                          <option value="1002">1002</option>
+                          <option value="1003">1003</option>
+                          <option value="1004">1004</option> -->                            
+                          <option *ngFor="let ruleID of allRuleIDs" [value]="ruleID.ruleId" [selected]="ruleID.ruleId">
+                              {{ruleID.ruleId}} - {{ruleID.description }}</option>      
+                      </select>
+                  </div>
+              </div>     
+          <div class="cust-table-wrap">
+          <div class="table-responsive">
+              <div class="cust-add-area">
+                  <span class="fa fa-plus-circle" (click)="openAddModal(true)"></span>
+              </div>    
+              <table class="table table-bordered table-striped m-auto cust-table">
+                  <thead>
+                      <tr>
+                          <th>Rule ID</th>
+                          <th>Description</th>
+                          <th>Rule Group</th>
+                          <th>Value</th>
+                          <th class="text-center">Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <!-- <tr *ngIf="isRuleIDCalled"> -->
+                        <tr *ngFor="let ruleid of allRuleIDs">
+                          <td>{{ruleid.ruleId}}</td>
+                          <td>{{ruleid.description}}</td>
+                          <td>{{ruleid.ruleGroup}}</td>
+                          <td>{{ruleid.value}}</td>
+                          <td>
+                              <div class="action-items">
+                                  <span class="fa fa-edit" 
+                                  (click)="openUpdateModal(true)"></span>
+                                  <span class="fa fa-trash" (click)="deleteRule(ruleID)"></span>
+                              </div>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      </div>
+  </div>
 
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 
 <!-- The Add Modal -->
 <div  id="addModal" class="modal fade" role="dialog" [ngStyle]="{'display': addModalIsOpen ? 'block' : 'none', 'opacity': 1}">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header">
-            <h4 class="modal-title">
-                <span *ngIf="!isNewRuleAdded">Add Rule</span>
-            </h4>
-            <a class="fa fa-2x fa-times-circle" (click)="openAddModal(false)">
-            </a>
-        </div>
-  
-        <!-- Modal body -->
-        <div class="modal-body">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
 
-    <div class="add-rule-area" *ngIf="!isNewRuleAdded">
-    <form  [formGroup]="addRuleForm" (ngSubmit)="addRule(addRuleForm)" [hidden]="isRuleAdded" autocomplete="off">
+      <!-- Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title">
+              <span *ngIf="!isNewRuleAdded">Add Rule</span>
+          </h4>
+          <a class="fa fa-2x fa-times-circle" (click)="openAddModal(false)">
+          </a>
+      </div>
 
-            <!-- <div class="form-group">
-                <label for="ruleid">Rule ID</label>
-                <input type="email" class="form-control" placeholder="Enter RuleID" id="ruleid" formControlName="ruleId">
-              </div> -->
-              <div class="form-group">
-                <label for="descrip">Description</label>
-                <input type="text" class="form-control" placeholder="Enter Description" id="descrip" formControlName="description">
+      <!-- Modal body -->
+      <div class="modal-body">
+          
+  <div class="add-rule-area" *ngIf="!isNewRuleAdded">
+  <form  [formGroup]="addRuleForm" (ngSubmit)="addRule(addRuleForm)" [hidden]="isRuleAdded" autocomplete="off">
+
+          <!-- <div class="form-group">
+              <label for="ruleid">Rule ID</label>
+              <input type="email" class="form-control" placeholder="Enter RuleID" id="ruleid" formControlName="ruleId">
+            </div> -->
+            <div class="form-group">
+              <label for="descrip">Description<sup>*</sup></label>
+              <input type="text" class="form-control" placeholder="Enter Description" id="descrip" formControlName="description" [ngClass]="{ 'is-invalid': addSubmitted && f.description.errors }">
+              
+                <div *ngIf="addSubmitted && f.description.errors" class="invalid-feedback">
+                  <div *ngIf="f.description.errors.required">
+                    Invalid Description
+                  </div>
               </div>
-              <div class="form-group">
-                <label for="rulegroup">Rule Group</label>
-                <select class="form-control" id="rulegroup" formControlName="ruleGroupValue">
-        
-                  <option value="Benefits">Benefits</option>
-                  <option value="Contracts">Contracts</option>
-                  <option value="Practitioners">Practitioners</option>
-                  <option value="Suppliers">Suppliers</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="ruleval">Value</label>
-                <input type="text
-                " class="form-control" placeholder="Enter Value" id="ruleval" formControlName="ruleValue">
-              </div>
-              <!-- <div class="card" [hidden]="!isRuleAdded">
-                <div class="card-header">.
-                  <h4 class="text-success"></h4>
+            </div>
+            <div class="form-group">
+              <label for="rulegroup">Rule Group<sup>*</sup></label>
+              <select class="form-control" id="rulegroup" formControlName="ruleGroupValue" [ngClass]="{ 'is-invalid': addSubmitted && f.ruleGroupValue.errors }">                
+                <div *ngIf="addSubmitted && f.ruleGroupValue.errors" class="invalid-feedback">
+                  <div *ngIf="f.ruleGroupValue.errors.required">
+                    Invalid Rule Group Value
+                  </div>
+                </div>        
+                <option value="Benefits">Benefits</option>
+                <option value="Contracts">Contracts</option>
+                <option value="Practitioners">Practitioners</option>
+                <option value="Suppliers">Suppliers</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ruleval">Value<sup>*</sup></label>
+              <input type="text
+              " class="form-control" placeholder="Enter Value" id="ruleval" formControlName="ruleValue" [ngClass]="{ 'is-invalid': addSubmitted && f.ruleValue.errors }">
+              
+              <div *ngIf="addSubmitted && f.ruleValue.errors" class="invalid-feedback">
+                <div *ngIf="f.ruleValue.errors.required">
+                  Invalid Rule Value
                 </div>
-                <div class="card-body">
-                  <h4>{{ruleAddResponse.message}}</h4>
-                </div>
-              </div> -->
-        
-          <div class="modal-footer-btns">
-            <button type="button" class="btn btn-outline-success"  (click)="openAddModal(false)">Cancel</button>
-            <button type="submit" class="btn btn-success">Add</button>
-          </div>
-          </form>
-          </div>  <!-- end of add-rule-area -->
-          <div *ngIf="isNewRuleAdded" class="success-dialog-msg">
-               <div class="modal-body">
-               <h2>New Rule added successfully</h2>
-               </div>
-          </div>
-        </div>           
+              </div>
+            </div>
+            <!-- <div class="card" [hidden]="!isRuleAdded">
+              <div class="card-header">.
+                <h4 class="text-success"></h4>
+              </div>
+              <div class="card-body">
+                <h4>{{ruleAddResponse.message}}</h4>
+              </div>
+            </div> -->
+      
+        <div class="modal-footer-btns">
+          <button type="button" class="btn btn-outline-success"  (click)="openAddModal(false)">Cancel</button>
+          <button type="submit" class="btn btn-success">Add</button>
         </div>
+        </form>
+        </div>  <!-- end of add-rule-area -->
+        <div *ngIf="isNewRuleAdded" class="success-dialog-msg">
+             <div class="modal-body">
+             <h2>New Rule added successfully</h2>
+             </div>
+        </div>
+      </div>           
       </div>
     </div>
-    
+  </div>
+  
 <!-- The Update Modal -->
 <div  id="updateModal" class="modal fade" role="dialog" [ngStyle]="{'display': updateModalIsOpen ? 'block' : 'none', 'opacity': 1}">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header">
-            <h4 class="modal-title"></h4>
-            <a class="fa fa-2x fa-times-circle" (click)="openUpdateModal(false)">
-            </a>
-          </div>
-  
-        <!-- Modal body -->
-        <div class="modal-body">
-            <div *ngIf="!isRuleUpdated">
-            <form [formGroup]="updateRuleForm" (ngSubmit)="updateRule()" autocomplete="off">
-                <div class="form-group">
-                    <label>Rule ID</label>
-                    <input type="text" class="form-control" formControlName="uruleid" readonly>
-                  </div>
-                  <div class="form-group">
-                    <label for="descrip">Description:</label>
-                    <input type="text" class="form-control" formControlName="uruledescrip"  id="descrip">
-                  </div>
-                  <div class="form-group">
-                    <label for="ruleGroup">Rule Group:</label>
-                    <select class="form-control" id="descrip" formControlName="urulegroup">
-                        <!-- <option *ngFor="let rg of ruleGroupList" [value]="rg">
-                            {{rg}}
-                        </option> -->                                                                                               
-                        <option value="Benefits">Benefits</option>
-                        <option value="Contracts">Contracts</option>
-                        <option value="Practitioners">Practitioners</option>
-                        <option value="Suppliers">Suppliers</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="rulval">Value:</label>
-                    <input type="text" class="form-control" formControlName="urulevalue" id="rulval">
-                  </div>
-                  <!-- Modal footer -->
-                  <div class="modal-footer-btns">
-                    <button type="button" class="btn btn-outline-primary"  (click)="openUpdateModal(false)">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                  </div>
-                </form>
-            </div>
-            <div *ngIf="isRuleUpdated" class="success-dialog-msg">
-                 <div class="modal-body">
-                 <h2>Rule updated successfully</h2>
-                 </div>
-            </div>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <a class="fa fa-2x fa-times-circle" (click)="openUpdateModal(false)">
+          </a>
         </div>
-  
-  
+
+      <!-- Modal body -->
+      <div class="modal-body">
+          <div *ngIf="!isRuleUpdated">
+          <form [formGroup]="updateRuleForm" (ngSubmit)="updateRule()" autocomplete="off">
+              <div class="form-group">
+                  <label>Rule ID</label>
+                  <input type="text" class="form-control" formControlName="uruleid" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="descrip">Description:</label>
+                  <input type="text" class="form-control" formControlName="uruledescrip"  id="descrip">
+                </div>
+                <div class="form-group">
+                  <label for="ruleGroup">Rule Group:</label>
+                  <select class="form-control" id="descrip" formControlName="urulegroup">
+                      <!-- <option *ngFor="let rg of ruleGroupList" [value]="rg">
+                          {{rg}}
+                      </option> -->                                                                                               
+                      <option value="Benefits">Benefits</option>
+                      <option value="Contracts">Contracts</option>
+                      <option value="Practitioners">Practitioners</option>
+                      <option value="Suppliers">Suppliers</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="rulval">Value:</label>
+                  <input type="text" class="form-control" formControlName="urulevalue" id="rulval">
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer-btns">
+                  <button type="button" class="btn btn-outline-primary"  (click)="openUpdateModal(false)">Cancel</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+              </form>
+          </div>
+          <div *ngIf="isRuleUpdated" class="success-dialog-msg">
+               <div class="modal-body">
+               <h2>Rule updated successfully</h2>
+               </div>
+          </div>
       </div>
+
+
     </div>
   </div>
-     
+</div>
+   
 <!-- The Update Modal -->
 <div  id="deleteModal" class="modal fade" role="dialog" [ngStyle]="{'display': deleteModalIsOpen ? 'block' : 'none', 'opacity': 1}">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-  
-        <!-- Modal Header -->
-        <div class="modal-header">
-            <h4 class="modal-title"></h4>
-            <a class="fa fa-2x fa-times-circle" (click)="openDeleteModal(false)">
-            </a>
-          </div>
-  
-        <!-- Modal body -->
-        <div class="modal-body">
-            <div *ngIf="isRuleDeleted" class="success-dialog-msg">
-                 <div class="modal-body">
-                 <h2>Rule Deleted successfully</h2>
-                 </div>
-            </div>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <a class="fa fa-2x fa-times-circle" (click)="openDeleteModal(false)">
+          </a>
         </div>
-  
-  
+
+      <!-- Modal body -->
+      <div class="modal-body">
+          <div *ngIf="isRuleDeleted" class="success-dialog-msg">
+               <div class="modal-body">
+               <h2>Rule Deleted successfully</h2>
+               </div>
+          </div>
       </div>
+
+
     </div>
   </div>
+</div>

@@ -6,15 +6,16 @@
         </a>
     </div>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>  
-        <div class="menu-list" *ngIf="isLoggedIn">  
+      <div class="menu-list" *ngIf="isLoggedIn">  
+         <!--  <div class="menu-list">  -->
             <ul id="menu-content" class="menu-content collapse out">              
                 <li  data-toggle="collapse" data-target="#admin" class="collapsed active">
                   <a>Configuration <span class="arrow"></span></a>
                 </li>
-                <ul class="sub-menu collapse" id="admin">
+                <ul class="sub-menu collapse show" id="admin">
                     <li routerLinkActive="active">
                         <a routerLink="/claim-search">
-                            Claim Search
+                            Claims
                         </a>
                     </li>
                     <!-- <li  data-toggle="collapse" data-target="#claims" class="collapsed active">
@@ -32,32 +33,32 @@
                             </a>
                         </li>
                      </ul> -->
-                    <li routerLinkActive="active">
+                    <li routerLinkActive="active" *ngIf="roleName=='Admin'">
                         <a routerLink="/benefits">
                             Benefits
                         </a>
                     </li>
-                    <li routerLinkActive="active">
+                    <li routerLinkActive="active" *ngIf="roleName=='Admin'">
                         <a routerLink="/programs">
                             Programs
                         </a>                        
                     </li>
-                    <li routerLinkActive="active">
+                    <li routerLinkActive="active" *ngIf="roleName=='Admin'">
                         <a routerLink="/contracts">
                             Contracts
                         </a>                        
                     </li>
-                    <li routerLinkActive="active">
+                    <li routerLinkActive="active" *ngIf="roleName=='Admin'">
                         <a routerLink="/client">
-                            Client
+                            Clients
                         </a>                        
                     </li>
-                    <li routerLinkActive="active">
+                    <li routerLinkActive="active" *ngIf="roleName=='Admin'">
                         <a routerLink="/roles">
                             Roles
                         </a>
                     </li>
-                    <li routerLinkActive="active">
+                    <li routerLinkActive="active" *ngIf="roleName=='Admin'">
                         <a routerLink="/rules">
                             Rules
                         </a>

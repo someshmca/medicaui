@@ -52,13 +52,11 @@ export class LoginComponent implements OnInit {
     console.log("username : "+this.userName);
     console.log("password : "+this.password);
     console.log("Login path : "+Paths.loginPath);
-
-    if(this.userName == '' || this.userName !="admin@infinite.com"){
-      this.invalidEmail = true;
-      return this.loginForm.invalid;
+    if(this.userName =="admin@infinite.com" || this.userName =="ashwani.kumar@infinite.com"){
+      this.invalidEmail = false;
     }
     else{
-      this.invalidEmail = false;
+      this.invalidEmail = true;
     }
     if(this.password == '' || this.password != "pass@1234"){
       this.invalidPassword = true;
@@ -77,7 +75,7 @@ export class LoginComponent implements OnInit {
                 this.responseRoleName = this.loginData.roleName;
                 this.loginService.setLoggedInUser(this.responseName);
                 this.loginService.setLoggedRole(this.responseRoleName);
-                if((this.userName=="ashwani.kumar@infinite.com" && this.password=="pass@1234") || this.userName=="admin@infinite.com" && this.password=="pass@1234"){
+                if((this.userName=="ashwani.kumar@infinite.com" && this.password=="pass@1234") || (this.userName=="admin@infinite.com" && this.password=="pass@1234")){
                   this.submitted = true;
                   this.isLoginSuccess = true;
                   console.log("Name : "+this.responseName );

@@ -1,0 +1,38 @@
+
+
+.modal{
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(1px);
+}
+
+.modal-header .fa{
+    cursor: pointer;
+    position: relative;
+    top: -20px;
+    right: -15px;
+    color: #003847;
+}
+.modal-header a:hover{
+    border: none;
+    outline: none;
+    text-decoration: none;
+}
+.modal-footer-btns{
+    text-align: right;
+}
+.modal-footer-btns .btn{
+    margin-left: 15px;
+}
+.success-dialog-msg{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.success-dialog-msg h2{
+    padding: 0;
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+    color: #397402;
+}

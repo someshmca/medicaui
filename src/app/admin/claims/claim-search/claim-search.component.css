@@ -12,15 +12,3 @@
 .claim-search-btn-area .btn{
     margin-right: 15px;
 }
-
-.claim-report-table tr td:first-child{
-    color: #007bff;
-    cursor: pointer;
-}
-.claim-table-area{
-    width: 100%;
-    overflow-x: auto;
-}
-.claim-report-table{
-    width: 1200px;
-}

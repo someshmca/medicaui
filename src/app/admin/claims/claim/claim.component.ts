@@ -42,8 +42,10 @@ export class ClaimComponent implements OnInit {
       this.stopLossAmount = data;
       console.log("calc stoploss amount kj : "+this.stopLossAmount);
       //debugger;
-    })
- 
+    }) 
+  }
+  refreshClaim(){
+    this.isCalculateClicked = false;
   }
 
 }

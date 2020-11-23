@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import {IClaimReportsModel} from '../models/claim-reports.model';
 import {IClaimSearch} from '../models/claim-search.model';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import {Paths} from '../admin-paths';
 
@@ -12,6 +12,12 @@ import {Paths} from '../admin-paths';
 export class ClaimReportService {
   requestClaimSearch: IClaimSearch;
   responseClaimReport: any;
+
+  private claimResults = new BehaviorSubject<any>(false);
+  claimResultsVal = this.claimResults.asObservable();
+  setClaimResults(claimResults: IClaimReportsModel[]) {
+    this.claimResults.next(claimResults)
+  }
 
   claimReportGrid: Array<IClaimReportsModel> = [    
   ];

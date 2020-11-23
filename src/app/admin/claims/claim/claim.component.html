@@ -1,13 +1,12 @@
 
 <p class="claim-id-firstline">
     <strong>Claim ID: </strong> 
-    {{claimData.claimId}}
 </p>
 <div class="card">
     <div class="card-header claim-actions-header">
         <h5>Actions </h5>
         <a class="btn btn-primary" (click)="calculateClaimAmount()">Calculate</a>
-        <a href="#" style="color: #555; margin-left: 8px;">
+        <a class="refresh-link" (click)="refreshClaim()">
             <span class="fa fa-refresh"></span> Refresh
         </a>
     </div>
@@ -22,7 +21,7 @@
             <div class="col-md-4 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Last Changed on</label>
-                    <input type="text" name="lastchanged" class="form-control" [value]="claimData.lastChangedOn" readonly/>
+                    <input type="text" name="lastchanged" class="form-control" [value]="claimData.lastChangedOn | date:'MM/dd/yyyy'" readonly/>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12">
@@ -34,7 +33,7 @@
             <div class="col-md-4 col-sm-6 col-12">
                 <div class="form-group">
                     <label>Adjudicated on</label>
-                    <input type="text" name="adjudicatedon" class="form-control" [value]="claimData.adjudicatedOn" readonly/>
+                    <input type="text" name="adjudicatedon" class="form-control" [value]="claimData.adjudicatedOn | date:'MM/dd/yyyy'" readonly/>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 col-12">

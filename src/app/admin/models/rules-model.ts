@@ -1,6 +1,14 @@
 
-export interface IRuleIDs{
-    roleName: string
+export interface IAllRuleIDs{
+    ruleId: string,
+    description: string,
+    value: string,
+    createdid: string,
+    createdBy: string,
+    updateid: string,
+    lastupdate: Date,
+    ruleGroup: string,
+    isActive: string
 }
 
 export interface IRuleDetails{     

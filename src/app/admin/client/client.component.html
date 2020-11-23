@@ -1,5 +1,5 @@
 
-    <div class="card custom-card-1">
+    <div class="card custom-card">
         <div class="card-header">
            Client
         </div>
@@ -17,31 +17,33 @@
                         </select>
                     </div>
                 </div>     
-            <div class="table-responsive cust-table-wrap">
+            <div class="card-table-area">
                 <div class="cust-add-area">
                     <span class="fa fa-plus-circle"></span>
                 </div>
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>Client ID</th>
-                            <th>Description</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngIf="isContractDetailCalled">
-                            <td>{{ contractDetail.contractsId }}</td>
-                            <td>{{ contractDetail.description }}</td>
-                            <td>
-                                <div class="action-items">
-                                    <span class="fa fa-edit"></span>
-                                    <span class="fa fa-trash"></span>
-                                </div>                                
-                            </td>
-                        </tr>  
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped card-table">
+                        <thead>
+                            <tr>
+                                <th>Client ID</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="isContractDetailCalled">
+                                <td>{{ contractDetail.contractsId }}</td>
+                                <td>{{ contractDetail.description }}</td>
+                                <td>
+                                    <div class="action-items">
+                                        <span class="fa fa-edit"></span>
+                                        <span class="fa fa-trash"></span>
+                                    </div>                                
+                                </td>
+                            </tr>  
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

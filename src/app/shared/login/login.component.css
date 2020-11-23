@@ -4,11 +4,17 @@ a, a:hover{
 }
 
 .login-container{
+    background: url("../../../assets/images/login/login-page-bg.png") 0 0 no-repeat;
+    background-size: cover;
+    height: calc(100vh - 96px);
+    width: 100%;
 	display: flex;  
 	align-items: center;
 	justify-content: center;
 	height: calc(100vh - 70px);
-	background: #cccccc;
+}
+.login-container a{
+    color: #0078D3;
 }
 .login-success-area{
 	width: 400px;

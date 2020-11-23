@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import {IRuleIDs, IRuleDetails, IRuleAdd, IRuleAddResponse, IRuleUpdate, IRuleUpdateResponse} from '../models/rules-model';
+import {IAllRuleIDs, IRuleDetails, IRuleAdd, IRuleAddResponse, IRuleUpdate, IRuleUpdateResponse} from '../models/rules-model';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
@@ -13,8 +13,8 @@ export class RulesService {
 
  
   constructor(private http: HttpClient) { }
-  getRuleIDs(){
-    return this.http.get<IRuleIDs[]>(Paths.rulesIDList).pipe(catchError(this.handleError.bind(this)));
+  getAllRulesList(){
+    return this.http.get<IAllRuleIDs[]>(Paths.allRulesList).pipe(catchError(this.handleError.bind(this)));
   }
   getRuleDetails(ruleID: string): Observable<IRuleDetails> {
     //const headerOptions = new HttpHeaders({ 'Content-Type': 'application/json' });

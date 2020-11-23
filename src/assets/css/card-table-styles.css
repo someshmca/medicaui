@@ -1,0 +1,32 @@
+
+.card-table-area{
+    position: relative;
+}
+.cust-add-area{
+    position: absolute;
+    width: 59px;
+    height: 50px;
+    right: -15px;
+    top: -20px;
+    display: inline-block;
+}
+.cust-add-area span{
+    font-size: 3rem;
+    color: #008000;
+    cursor: pointer;
+}
+.action-items{
+    text-align: center;
+}
+.action-items .fa{
+    margin: 0 8px;
+    color: #778899;
+    cursor: pointer;
+
+}
+.action-items .fa.fa-edit:hover{
+    color: #0148b3;
+}
+.action-items .fa.fa-trash:hover{
+    color: #b80202;
+}

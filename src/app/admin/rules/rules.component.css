@@ -1,11 +1,5 @@
-.rules-table-area{
-    position: relative;
-    max-width: 720px;
-}
 
-.rules-table{
-    max-width: 700px;
-}
+
 .rules-add-area{
     position: absolute;
     width: 59px;

@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import {RulesService} from '../services/rules.service';
-import {IRuleDetails, IRuleIDs, 
+import {IRuleDetails, IAllRuleIDs, 
   IRuleAdd, IRuleAddResponse, IRuleUpdate, IRuleUpdateResponse} from '../models/rules-model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -14,9 +14,9 @@ export class RulesComponent implements OnInit {
   addRuleForm: FormGroup;
   addRuleRequest: IRuleAdd;
   addRuleResponse: IRuleAddResponse;
-
+  isAddRuleInvalid: boolean = false;
   updateRuleForm: FormGroup;
-  ruleIDs: IRuleIDs[] = [];
+  allRuleIDs: IAllRuleIDs[] = [];
   ruleID: string;
   ruleDescription: string;
   ruleValue: string;
@@ -32,13 +32,16 @@ export class RulesComponent implements OnInit {
   isNewRuleAdded: boolean = false;
   isRuleUpdated: boolean = false;
   isRuleDeleted: boolean = false;
+  addSubmitted: boolean = false;
 
+  isAddDescripValid: boolean = false;
+  selectAll: string = "Select All";
   constructor(private rulesService: RulesService, private fb: FormBuilder ) { }
 
   ngOnInit() {
-    this.rulesService.getRuleIDs().subscribe(
-      (data: IRuleIDs[]) => {
-         this.ruleIDs = data;
+    this.rulesService.getAllRulesList().subscribe(
+      (data: IAllRuleIDs[]) => {
+         this.allRuleIDs = data;
          //debugger;
       }
     ); 
@@ -63,19 +66,28 @@ export class RulesComponent implements OnInit {
   }
   
   getRuleDetails(ruleID: string){
-    if(ruleID == 'Please Select the Rule'){
-      this.isRuleIDCalled = false;
-    }
-    this.rulesService.getRuleDetails(ruleID).subscribe(
-      (data: IRuleDetails) => {
-        this.isRuleIDCalled = true;
-        this.ruleDetails = data;
-        this.ruleID = this.ruleDetails.ruleId;
-        this.ruleDescription = this.ruleDetails.description;
-        this.ruleValue = this.ruleDetails.value;
-        this.ruleGroup = this.ruleDetails.ruleGroup;
+    
+    // if(ruleID == 'Please Select the Rule'){
+    //   this.isRuleIDCalled = false;
+    // }
+    // this.rulesService.getRuleDetails(ruleID).subscribe(
+    //   (data: IRuleDetails) => {
+    //     this.isRuleIDCalled = true;
+    //     this.ruleDetails = data;
+    //     this.ruleID = this.ruleDetails.ruleId;
+    //     this.ruleDescription = this.ruleDetails.description;
+    //     this.ruleValue = this.ruleDetails.value;
+    //     this.ruleGroup = this.ruleDetails.ruleGroup;
+    //   }
+    // );    
+
+     this.rulesService.getAllRulesList().subscribe(
+      (data: IAllRuleIDs[]) => {
+         this.allRuleIDs = data.filter(obj => {return obj.ruleId==ruleID;});
+
+         //debugger;
       }
-    );    
+    ); 
   }
   getRuleGroup(){
     this.rulesService.getRuleGroup().subscribe(
@@ -84,10 +96,33 @@ export class RulesComponent implements OnInit {
       }
     )
   }
-  
+  get f() { return this.addRuleForm.controls; }
+
   addRule(form: FormGroup){
-    console.log(form.value);
-    //debugger;
+    //console.log(form.value);
+   // this.addRuleForm.reset();
+    this.addSubmitted = true;
+//    this.isAddDescripValid = this.addRuleForm.get('description').invalid;
+
+    // if(this.addRuleForm.get('description').invalid || this.addRuleForm.get('description').validator.length)
+    // stop here if form is invalid
+    // if (this.addRuleForm.invalid && !this.isAddDescripValid) {
+    //   this.addSubmitted = false;
+    //   return;
+    // }
+    // if (this.addRuleForm.invalid && !this.isAddDescripValid) {
+    //   this.addSubmitted = false;
+    //   return;
+    // }
+    //this.addSubmitted = true;
+
+    // stop here if form is invalid
+    if (this.addRuleForm.invalid) {
+        return;
+    }
+
+   // alert("Valid addForm");
+
     this.addRuleRequest = {
       ruleID: '',
       description: this.addRuleForm.get('description').value,
@@ -101,22 +136,17 @@ export class RulesComponent implements OnInit {
 
     const headers = { 'content-type': 'application/json'};
     console.log("add rule request  : "+ this.addRuleRequest);
-   // debugger;
     this.rulesService.addRule(this.addRuleRequest).subscribe(
       (data: IRuleAddResponse) => {
         console.log("Add Rule data : "+data);
         this.addRuleResponse = data;
         console.log("add Rule Response : "+this.addRuleResponse);
         this.isNewRuleAdded = true;        
-        this.updateRuleForm.get('uruleid').reset;
-        this.getRuleDetails(this.updateRuleForm.get('uruleid').value);
-        this.rulesService.getRuleIDs().subscribe(
-          (data: IRuleIDs[]) => {
-             this.ruleIDs = data;
-             //debugger;
+        this.rulesService.getAllRulesList().subscribe(
+          (data: IAllRuleIDs[]) => {
+             this.allRuleIDs = data;
           }
         ); 
-        //debugger;
       }
     )
   }
@@ -124,6 +154,7 @@ export class RulesComponent implements OnInit {
     this.addModalIsOpen = open;
     if(!open){
       this.isNewRuleAdded = false;
+      this.addRuleForm.reset();
     }
   }
   openDeleteModal(open: boolean){
@@ -184,9 +215,9 @@ export class RulesComponent implements OnInit {
           this.isRuleDeleted = true;
           this.openDeleteModal(true);
           this.isRuleIDCalled = false;
-          this.rulesService.getRuleIDs().subscribe(
-            (data: IRuleIDs[]) => {
-               this.ruleIDs = data;
+          this.rulesService.getAllRulesList().subscribe(
+            (data: IAllRuleIDs[]) => {
+               this.allRuleIDs = data;
                //debugger;
             }
           ); 

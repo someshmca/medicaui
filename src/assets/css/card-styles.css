@@ -1,0 +1,40 @@
+
+
+.card.custom-card{
+    background: #ffffff;
+    border: 1px solid #E2E2E2;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.card-header{
+    /* background: #e3f0f5 !important;
+    color: #00718f; */
+    font-weight: 600;
+    color: #3E3E3E;
+    padding: 5px 15px;
+    border-left: 4px solid #4193CE;
+    font-size: 16px;    
+}
+.custom-card .form-group label, .card .form-group label{
+     min-width: 170px; 
+    max-width: 200px;
+}
+.custom-card .form-group, .card .form-group{
+    display: flex;
+    align-items: center;
+    min-height: 35px;
+}
+.custom-card .form-control, .card .form-control{
+    height: 30px;
+    max-width: 200px;
+}
+.card input[type='date'].form-control{
+    height: 30px;
+    max-width: initial;
+    width: 175px;
+}
+.custom-card-1{
+    max-width: 750px;
+    margin: 35px 0;
+}

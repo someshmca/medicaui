@@ -17,9 +17,7 @@ export class ClaimSearchComponent implements OnInit {
   
   claimSearchForm: FormGroup;
   //responseClaimReport: Array<IClaimReportsModel>[];
-  responseClaimReportData: any=[];
   claimRequest: IClaimSearch;
-  isClaimReportsHidden: boolean= true;
   constructor(private fb: FormBuilder, 
     private _claimReportService: ClaimReportService, 
     private _claimService: ClaimService,
@@ -79,12 +77,8 @@ export class ClaimSearchComponent implements OnInit {
     this._claimReportService.getClaimReport((this.claimRequest)).subscribe(
       (data) => {
         console.log("data : "+data);      
-        this.responseClaimReportData = data;
-       // debugger;        
-        console.log(" responseClaimReportData : "+this.responseClaimReportData);
-        //debugger;
-        console.log(" report claim ID : "+this.responseClaimReportData.claimId);
-        this.isClaimReportsHidden = false;
+        this._claimReportService.setClaimResults(data);
+        this._route.navigate(['/claim-result']);
         console.log("Calim Response data : "+data);
         //debugger;
       } 
@@ -92,9 +86,4 @@ export class ClaimSearchComponent implements OnInit {
    // this._claimReportService.getClaimReport("")
   }
   
-  setClaimId(id: string){
-    this._claimService.setClaimId(id);
-    console.log("Id : "+id);
-    this._route.navigate(['/claim']);
-  }
 }

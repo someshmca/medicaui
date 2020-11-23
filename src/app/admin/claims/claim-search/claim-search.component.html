@@ -1,4 +1,4 @@
-<div [hidden]="!isClaimReportsHidden">
+
 <form [formGroup]="claimSearchForm" (ngSubmit)="onSubmit(claimSearchForm)">
     <div class="card custom-card">
         <div class="card-header">
@@ -174,50 +174,4 @@
         </div>
     </div>    
     </form>
-</div>    
-    <div class="claim-table-content" [hidden]="isClaimReportsHidden">
-        <h2 class="text-primary">Claim Report</h2>
-    <div class="table-responsive claim-table-area">
-        <!--Table-->
-        <table class="table table-striped claim-report-table">
-      
-          <!--Table head-->
-          <thead>
-            <tr>
-              <!-- <th width="140">Bill ID</th> -->
-              <th width="140">Claim ID</th>
-              <th width="140">Provider Name</th>
-              <th width="140">Member Name</th>
-              <th>Converted</th>
-              <th>Billed</th>
-              <th width="120">HCC Amount</th>
-              <th>Allowed</th>
-              <th>Capitated...</th>
-              <th width="180">Last Changed</th>
-              <th width="150">Worksheet State</th>
-            </tr>
-          </thead>
-          <!--Table head-->
-      
-          <!--Table body-->
-          <tbody>
-            <tr *ngFor="let record of responseClaimReportData" 
-            (click)="setClaimId(record.claimId)">
-              <!-- <td>{{record.billId}}</td> -->
-              <td>{{record.claimId}}</td>
-              <td>{{record.providerName}}</td>
-              <td>{{record.memberName}}</td>
-              <td><input type="checkbox" [checked]="record.converted"/></td>
-              <td>{{record.billed}}</td>
-              <td>{{record.hccamount}}</td>
-              <td><input type="checkbox" [checked]="record.allowed"/></td>
-              <td>{{record.capitated}}</td>
-              <td>{{record.lastChanged}}</td>
-              <td>{{record.workSheetState}}</td> 
-            </tr>
-          </tbody>
-          <!--Table body-->
-        </table>
-        <!--Table-->
-      </div>
-    </div>
+ 

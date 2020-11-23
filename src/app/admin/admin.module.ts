@@ -15,10 +15,11 @@ import { RulesComponent } from './rules/rules.component';
 import { AddRuleComponent } from './rules/add-rule/add-rule.component';
 import { UpdateRuleComponent } from './rules/update-rule/update-rule.component';
 import { ClientComponent } from './client/client.component';
+import { AttributesComponent } from './attributes/attributes.component';
 
 
 @NgModule({
-  declarations: [ClaimSearchComponent, ClaimResultComponent, ClaimComponent, BenefitsComponent, ProgramsComponent, ContractsComponent, RoleComponent, RulesComponent, AddRuleComponent, UpdateRuleComponent, ClientComponent],
+  declarations: [ClaimSearchComponent, ClaimResultComponent, ClaimComponent, BenefitsComponent, ProgramsComponent, ContractsComponent, RoleComponent, RulesComponent, AddRuleComponent, UpdateRuleComponent, ClientComponent, AttributesComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
